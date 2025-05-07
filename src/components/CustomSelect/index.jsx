@@ -1,8 +1,10 @@
-export default function CustomSelect({label, options}){
+export default function CustomSelect({label, options, onChange}){
     return(
         <div className="w-full flex flex-col gap-2">
             <label className="text-[17px] font-bold">{label}</label>
-            <select className="w-full h-[45px] rounded-lg bg-[#141414] border border-[#ffffff1a] outline-none focus:border-purple-400">
+            <select 
+            onChange={onChange}
+            className="w-full h-[45px] rounded-lg bg-[#141414] border border-[#ffffff1a] outline-none focus:border-purple-400">
                <option value="">Selecione...</option>
                {options.map((opcao) => {
                 return(
