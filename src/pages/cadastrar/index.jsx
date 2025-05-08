@@ -8,14 +8,21 @@ import { toast } from "react-toastify";
 export default function Cadastrar(){
      const[titulo, setTitulo] = useState("");
      const [diretor, setDiretor] = useState("");
-     const [ano, setAno] = useState("0");
+     const [ano, setAno] = useState(0);
      const [genero, setGenero] = useState("");
-     const [nota, setNota] = useState("0");
+     const [nota, setNota] = useState(0);
      const [sinopse, setSinopse] = useState("");
-     const [banner, setBanner] = useState("");
+     const [banner, setBanner] = useState("")
 
      async function handleSubmit(event){
         event.preventDefault();
+
+        if(!titulo || !diretor || !ano || !genero || !nota || !sinopse || !banner){
+          toast.error("Preencha todos os campos!")
+          return;
+            
+          }
+        
 
         try { 
           await instance.post("/api/movies", {
@@ -27,25 +34,22 @@ export default function Cadastrar(){
             sinopse: sinopse,
             banner: banner
           })
-          toast.success("Filme cadastrado com sucesso!")
+          toast.success("Filme cadastrado com sucesso!");
           setTitulo("");
           setDiretor(""); 
-          setAno("");
-          setNota("");
+          setAno(0);
+          setNota(0);
+          setGenero("");
           setSinopse("");
           setBanner("");
         } catch (error) {
-          console.error(error)
-          toast.error("Erro ao cadastrar filme!")
+          console.error(error);
+          toast.error("Erro ao cadastrar filme!");
           
         }
 
        
      }
-
-
-
-    
 
     return(
        <PageWrapper showButton={false}> 
@@ -80,7 +84,7 @@ export default function Cadastrar(){
            <div className="w-full flex gap-4">
             <div className="w-[50%]">
               <CustomInput
-              valur={ano}
+              value={ano}
               label="Ano"
               placeholder="Digite o ano de lançamento"
               type="number"
