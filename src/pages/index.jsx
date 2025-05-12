@@ -2,6 +2,7 @@ import instance from "@/api/instance";
 import CardFilme from "@/components/CardFilme";
 import PageWrapper from "@/components/PageWrapper";
 import { useEffect, useState } from "react";
+import { router } from ".api/movies."
 
 export default function Home(){
   const [filmes, setFilmes] = useState([]);
